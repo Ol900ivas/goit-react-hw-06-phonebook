@@ -1,41 +1,48 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsSlice';
-import { nanoid } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
-// import { useState } from 'react';
+import { useState } from 'react';
 import { InputWrap, Label, Input, FormBtn } from './ContactForm.styled';
 
-export const ContactForm = () => {
-  const dispatch = useDispatch();
-  // const [name, setName] = useState('');
-  // const [number, setNumber] = useState('');
+export const ContactForm = ({ submit }) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
 
-  // const handleChange = event => {
-  //   const { name, value } = event.target;
+  const handleChange = event => {
+    const { name, value } = event.target;
 
-  //   switch (name) {
-  //     case 'name':
-  //       setName(value);
-  //       break;
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
 
-  //     case 'number':
-  //       setNumber(value);
-  //       break;
+      case 'number':
+        setNumber(value);
+        break;
 
-  //     default:
-  //       return;
-  //   }
-  // };
+      default:
+        return;
+    }
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
-    const form = event.target;
-    dispatch(addContact(form.elements.name.value, form.elements.number.value));
-    form.reset();
+
+    const data = {
+      name,
+      number,
+    };
+
+    submit(data);
+    reset();
+  };
+
+  const reset = () => {
+    setName('');
+    setNumber('');
   };
 
   return (
@@ -46,9 +53,9 @@ export const ContactForm = () => {
           type="text"
           name="name"
           id={nameInputId}
-          // value={name}
+          value={name}
           placeholder="Sergiy Petrenko"
-          // onChange={handleChange}
+          onChange={handleChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
@@ -60,19 +67,16 @@ export const ContactForm = () => {
           type="tel"
           name="number"
           id={numberInputId}
-          // value={number}
+          value={number}
           placeholder="123-45-67"
-          // onChange={handleChange}
+          onChange={handleChange}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
       </InputWrap>
 
-      <FormBtn
-        type="submit"
-        // disabled={!name || !number}
-      >
+      <FormBtn type="submit" disabled={!name || !number}>
         Add contact
       </FormBtn>
     </form>

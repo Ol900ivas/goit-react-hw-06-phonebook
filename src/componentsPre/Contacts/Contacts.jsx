@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
 import { ContactItem } from '../ContactItem/ContactItem';
 import { Ul } from './Contacts.styled';
 
-export const Contacts = () => {
-  const contacts = useSelector(state => state.contacts);
-
+export const Contacts = ({ contacts, onDeleteContact }) => {
   return (
     <Ul>
       {contacts.map(contact => {
@@ -16,6 +13,7 @@ export const Contacts = () => {
             id={contact.id}
             name={contact.name}
             number={contact.number}
+            onDeleteContact={onDeleteContact}
           />
         );
       })}
