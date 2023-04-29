@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsSlice';
 import { nanoid } from '@reduxjs/toolkit';
 import PropTypes from 'prop-types';
