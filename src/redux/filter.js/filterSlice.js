@@ -7,9 +7,7 @@ const filterSlice = createSlice({
   },
   reducers: {
     changeFilter(state, action) {
-      return state.filter(contact =>
-        contact.name.toLowerCase().includes(state.filter.toLowerCase())
-      );
+      state.filter = action.payload;
     },
   },
 });

@@ -10,11 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-// import { contactsReducer } from './contacts/contactsSlice';
-// import { filterReducer } from './filter.js/filterSlice';
-
 import { rootReducer } from './reducer';
-// import rootReducer from './reducers';
 
 const persistConfig = {
   key: 'contacts',
