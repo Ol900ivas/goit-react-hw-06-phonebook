@@ -6,6 +6,7 @@ export const Contacts = () => {
   const contacts = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter);
   console.log(typeof contacts);
+  console.log(contacts);
   console.log(typeof filter);
   const getFilteredContacts = () => {
     const normalaizedFilter = filter.toLowerCase();
