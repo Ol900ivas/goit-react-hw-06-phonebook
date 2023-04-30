@@ -7,11 +7,11 @@ import { App } from 'components/App';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <App />
-      </React.StrictMode>
-    </PersistGate>
-  </Provider>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
