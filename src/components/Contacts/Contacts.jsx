@@ -4,8 +4,9 @@ import { Ul, Li } from './Contacts.styled';
 
 export const Contacts = () => {
   const contacts = useSelector(state => state.contacts);
-  const { filter } = useSelector(state => state.filter);
-
+  const filter = useSelector(state => state.filter);
+  console.log(contacts);
+  console.log('filter:', filter);
   const getFilteredContacts = () => {
     const normalaizedFilter = filter.toLowerCase();
     return contacts.filter(contact =>
